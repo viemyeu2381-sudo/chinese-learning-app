@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Link2, Type, Zap } from 'lucide-react';
-import { QuizMcGame } from '../components/games/QuizMcGame';
-import { MatchPairsGame } from '../components/games/MatchPairsGame';
-import { PinyinPickGame } from '../components/games/PinyinPickGame';
-import { TimeAttackGame } from '../components/games/TimeAttackGame';
 import type { GameMode } from '../types/vocabulary';
+
+const QuizMcGame = lazy(() =>
+  import('../components/games/QuizMcGame').then((m) => ({ default: m.QuizMcGame }))
+);
+const MatchPairsGame = lazy(() =>
+  import('../components/games/MatchPairsGame').then((m) => ({ default: m.MatchPairsGame }))
+);
+const PinyinPickGame = lazy(() =>
+  import('../components/games/PinyinPickGame').then((m) => ({ default: m.PinyinPickGame }))
+);
+const TimeAttackGame = lazy(() =>
+  import('../components/games/TimeAttackGame').then((m) => ({ default: m.TimeAttackGame }))
+);
 
 const modes: { id: GameMode; label: string; desc: string; icon: typeof Brain }[] = [
   { id: 'quiz', label: 'Trắc nghiệm', desc: 'Chọn nghĩa đúng', icon: Brain },
@@ -54,10 +63,12 @@ export function GamePage() {
       >
         ← Chọn game khác
       </button>
-      {mode === 'quiz' && <QuizMcGame />}
-      {mode === 'match' && <MatchPairsGame />}
-      {mode === 'pinyin' && <PinyinPickGame />}
-      {mode === 'speed' && <TimeAttackGame />}
+      <Suspense fallback={<p className="text-sm text-slate-500">Đang tải game...</p>}>
+        {mode === 'quiz' && <QuizMcGame />}
+        {mode === 'match' && <MatchPairsGame />}
+        {mode === 'pinyin' && <PinyinPickGame />}
+        {mode === 'speed' && <TimeAttackGame />}
+      </Suspense>
     </div>
   );
 }

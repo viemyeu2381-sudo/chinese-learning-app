@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FlashcardSession } from '../components/flashcards/FlashcardSession';
-import { StrokePractice } from '../components/stroke/StrokePractice';
-import { HSKPathSection } from '../components/learn/HSKPathSection';
+
+const FlashcardSession = lazy(() =>
+  import('../components/flashcards/FlashcardSession').then((m) => ({ default: m.FlashcardSession }))
+);
+const StrokePractice = lazy(() =>
+  import('../components/stroke/StrokePractice').then((m) => ({ default: m.StrokePractice }))
+);
+const HSKPathSection = lazy(() =>
+  import('../components/learn/HSKPathSection').then((m) => ({ default: m.HSKPathSection }))
+);
 
 type Tab = 'cards' | 'stroke' | 'hsk';
 
@@ -48,9 +55,11 @@ export function LearnPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
       >
-        {tab === 'cards' && <FlashcardSession />}
-        {tab === 'stroke' && <StrokePractice />}
-        {tab === 'hsk' && <HSKPathSection />}
+        <Suspense fallback={<p className="text-sm text-slate-500">Đang tải nội dung...</p>}>
+          {tab === 'cards' && <FlashcardSession />}
+          {tab === 'stroke' && <StrokePractice />}
+          {tab === 'hsk' && <HSKPathSection />}
+        </Suspense>
       </motion.div>
     </div>
   );

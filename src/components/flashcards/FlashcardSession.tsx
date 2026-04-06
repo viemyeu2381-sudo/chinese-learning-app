@@ -88,7 +88,7 @@ function Flashcard({
             style={{ backfaceVisibility: 'hidden' }}
           >
             <p className="font-hanzi text-7xl sm:text-8xl font-semibold text-slate-900 dark:text-white tracking-wide">
-              {word.hanzi}
+              {word.hanTu}
             </p>
             <p className="text-lg text-brand-600 dark:text-rose-300 font-medium">{word.pinyin}</p>
             <p className="text-xs text-slate-400">Chạm để lật · Vuốt trái/phải</p>
@@ -102,7 +102,7 @@ function Flashcard({
             }}
           >
             <p className="text-xl font-semibold text-center text-slate-800 dark:text-slate-100 px-2">
-              {word.meaning}
+              {word.nghia}
             </p>
             {word.example && (
               <p className="text-sm text-slate-500 dark:text-slate-400 text-center font-hanzi leading-relaxed">
@@ -118,7 +118,7 @@ function Flashcard({
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            speakChinese(word.hanzi);
+            speakChinese(word.hanTu);
           }}
           className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 active:scale-95 transition-transform"
           aria-label="Nghe phát âm"

@@ -18,8 +18,8 @@ export function MatchPairsGame() {
     const subset = shuffle(words).slice(0, 4);
     const list: Cell[] = [];
     subset.forEach((w) => {
-      list.push({ id: `${w.id}-h`, label: w.hanzi, pairId: w.id, kind: 'h' });
-      list.push({ id: `${w.id}-m`, label: w.meaning, pairId: w.id, kind: 'm' });
+      list.push({ id: `${w.id}-h`, label: w.hanTu, pairId: w.id, kind: 'h' });
+      list.push({ id: `${w.id}-m`, label: w.nghia, pairId: w.id, kind: 'm' });
     });
     return shuffle(list);
   }, [words, round]);

@@ -4,10 +4,10 @@
   1. New Tables
     - `vocabulary`
       - `id` (uuid, primary key)
-      - `chinese` (text) - Chinese simplified characters
+      - `han_tu` (text) - Hanzi characters
       - `pinyin` (text) - Pinyin pronunciation
-      - `meaning` (text) - Vietnamese meaning
-      - `hsk_level` (integer) - HSK level 1-6
+      - `han_viet` (text) - Han-Viet reading
+      - `nghia` (text) - Vietnamese meaning
       - `created_at` (timestamptz) - Creation timestamp
       - `updated_at` (timestamptz) - Last update timestamp
 
@@ -19,10 +19,10 @@
 
 CREATE TABLE IF NOT EXISTS vocabulary (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  chinese text NOT NULL,
+  han_tu text NOT NULL,
   pinyin text NOT NULL,
-  meaning text NOT NULL,
-  hsk_level integer DEFAULT 1 CHECK (hsk_level >= 1 AND hsk_level <= 6),
+  han_viet text NOT NULL,
+  nghia text NOT NULL,
   created_at timestamptz DEFAULT now(),
   updated_at timestamptz DEFAULT now()
 );
@@ -50,5 +50,4 @@ CREATE POLICY "Anyone can delete vocabulary"
   FOR DELETE
   USING (true);
 
-CREATE INDEX IF NOT EXISTS idx_vocabulary_hsk_level ON vocabulary(hsk_level);
-CREATE INDEX IF NOT EXISTS idx_vocabulary_chinese ON vocabulary(chinese);
+CREATE INDEX IF NOT EXISTS idx_vocabulary_han_tu ON vocabulary(han_tu);

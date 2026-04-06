@@ -45,14 +45,14 @@ export function DictionarySearch() {
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <p className="font-hanzi text-3xl font-semibold text-slate-900 dark:text-white">{w.hanzi}</p>
+                  <p className="font-hanzi text-3xl font-semibold text-slate-900 dark:text-white">{w.hanTu}</p>
                   <p className="text-brand-600 dark:text-rose-300 font-medium">{w.pinyin}</p>
-                  <p className="mt-1 text-slate-700 dark:text-slate-200">{w.meaning}</p>
+                  <p className="mt-1 text-slate-700 dark:text-slate-200">{w.nghia}</p>
                 </div>
                 <div className="flex flex-col gap-1">
                   <button
                     type="button"
-                    onClick={() => speakChinese(w.hanzi)}
+                    onClick={() => speakChinese(w.hanTu)}
                     className="rounded-xl bg-slate-100 dark:bg-slate-700 p-2 text-slate-600 dark:text-slate-200"
                     aria-label="Phát âm"
                   >

@@ -1,26 +1,29 @@
 [
   {
     "id": "h1-001",
-    "hanzi": "你好",
+    "han_tu": "你好",
     "pinyin": "nǐ hǎo",
-    "meaning": "Xin chào",
+    "han_viet": "Nĩ Hảo",
+    "nghia": "Xin chào",
     "hsk": 1,
     "lessonId": "hsk1-l1",
     "example": "你好！我是学生。"
   },
   {
     "id": "h1-002",
-    "hanzi": "谢谢",
+    "han_tu": "谢谢",
     "pinyin": "xiè xie",
-    "meaning": "Cảm ơn",
+    "han_viet": "Tạ Tạ",
+    "nghia": "Cảm ơn",
     "hsk": 1,
     "lessonId": "hsk1-l1"
   },
   {
     "id": "h1-003",
-    "hanzi": "我",
+    "han_tu": "我",
     "pinyin": "wǒ",
-    "meaning": "Tôi / mình",
+    "han_viet": "Ngã",
+    "nghia": "Tôi / mình",
     "hsk": 1,
     "lessonId": "hsk1-l1",
     "radical": "戈"

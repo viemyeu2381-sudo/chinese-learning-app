@@ -1,8 +1,9 @@
 export interface VocabularyItem {
   id: string;
-  hanzi: string;
+  hanTu: string;
   pinyin: string;
-  meaning: string;
+  hanViet?: string;
+  nghia: string;
   hsk: 1 | 2 | 3 | 4 | 5 | 6;
   lessonId?: string;
   example?: string;

@@ -26,8 +26,11 @@ const wordSchema = new mongoose.Schema(
   {
     id: { type: String, required: true, unique: true },
     hanzi: String,
+    hanTu: String,
     pinyin: String,
     meaning: String,
+    nghia: String,
+    hanViet: String,
     hsk: Number,
     lessonId: String,
     example: String,
@@ -46,6 +49,15 @@ async function getVocabularyFromDb() {
   return docs.map(({ _id, ...rest }) => rest);
 }
 
+function normalizeVocabularyItem(item) {
+  return {
+    ...item,
+    hanTu: item.hanTu ?? item.hanzi ?? item.han_tu ?? '',
+    nghia: item.nghia ?? item.meaning ?? '',
+    hanViet: item.hanViet ?? item.han_viet ?? '',
+  };
+}
+
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true, mongo: mongoose.connection.readyState === 1 });
 });
@@ -54,8 +66,9 @@ app.get('/api/vocabulary', async (req, res) => {
   try {
     const fromDb = await getVocabularyFromDb();
     const list = fromDb?.length ? fromDb : staticVocabulary;
+    const normalized = list.map(normalizeVocabularyItem);
     const hsk = req.query.hsk ? Number(req.query.hsk) : null;
-    const filtered = hsk ? list.filter((w) => w.hsk === hsk) : list;
+    const filtered = hsk ? normalized.filter((w) => w.hsk === hsk) : normalized;
     res.json(filtered);
   } catch (e) {
     console.error(e);

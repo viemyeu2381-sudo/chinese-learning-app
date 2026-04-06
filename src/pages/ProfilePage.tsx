@@ -71,13 +71,13 @@ export function ProfilePage() {
                 className="flex items-center justify-between rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2"
               >
                 <div>
-                  <span className="font-hanzi text-lg font-semibold">{w.hanzi}</span>
+                  <span className="font-hanzi text-lg font-semibold">{w.hanTu}</span>
                   <span className="ml-2 text-xs text-slate-500">{w.pinyin}</span>
-                  <p className="text-xs text-slate-600 dark:text-slate-300">{w.meaning}</p>
+                  <p className="text-xs text-slate-600 dark:text-slate-300">{w.nghia}</p>
                 </div>
                 <button
                   type="button"
-                  onClick={() => speakChinese(w.hanzi)}
+                  onClick={() => speakChinese(w.hanTu)}
                   className="rounded-xl bg-slate-100 dark:bg-slate-700 p-2"
                   aria-label="Nghe"
                 >

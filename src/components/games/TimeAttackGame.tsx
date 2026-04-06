@@ -123,7 +123,7 @@ export function TimeAttackGame() {
       {current && (
         <>
           <div className="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 text-center">
-            <p className="font-hanzi text-6xl font-semibold">{current.hanzi}</p>
+            <p className="font-hanzi text-6xl font-semibold">{current.hanTu}</p>
           </div>
           <div className="grid grid-cols-2 gap-2">
             {options.map((opt) => (

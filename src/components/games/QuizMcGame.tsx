@@ -16,9 +16,9 @@ export function QuizMcGame() {
 
   const options = useMemo(() => {
     if (!words.length || !current) return [];
-    const pool = shuffle(words.filter((w) => w.id !== current.id).map((w) => w.meaning));
+    const pool = shuffle(words.filter((w) => w.id !== current.id).map((w) => w.nghia));
     const wrong = pool.slice(0, 3);
-    return shuffle([current.meaning, ...wrong]);
+    return shuffle([current.nghia, ...wrong]);
   }, [words, current, idx]);
 
   if (!words.length || !current) {
@@ -28,7 +28,7 @@ export function QuizMcGame() {
   const onPick = (opt: string) => {
     if (picked) return;
     setPicked(opt);
-    const ok = opt === current.meaning;
+    const ok = opt === current.nghia;
     if (ok) {
       setScore((s) => s + 1);
       recordStudyGames(recordStudy, 1);
@@ -51,13 +51,13 @@ export function QuizMcGame() {
         animate={{ opacity: 1, y: 0 }}
         className="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 text-center shadow-card dark:shadow-card-dark"
       >
-        <p className="font-hanzi text-6xl font-semibold text-slate-900 dark:text-white">{current.hanzi}</p>
+        <p className="font-hanzi text-6xl font-semibold text-slate-900 dark:text-white">{current.hanTu}</p>
         <p className="mt-2 text-sm text-slate-400">Chọn nghĩa đúng</p>
       </motion.div>
       <div className="grid gap-2">
         {options.map((opt) => {
           const show = picked !== null;
-          const correct = opt === current.meaning;
+          const correct = opt === current.nghia;
           const wrongPick = picked === opt && !correct;
           return (
             <button

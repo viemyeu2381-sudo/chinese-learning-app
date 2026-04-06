@@ -51,7 +51,7 @@ export function PinyinPickGame() {
         animate={{ opacity: 1, scale: 1 }}
         className="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 text-white p-10 text-center shadow-xl"
       >
-        <p className="font-hanzi text-7xl font-semibold">{current.hanzi}</p>
+        <p className="font-hanzi text-7xl font-semibold">{current.hanTu}</p>
       </motion.div>
       <div className="grid gap-2">
         {options.map((opt) => {

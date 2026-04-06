@@ -3,25 +3,24 @@ import HanziWriter from 'hanzi-writer';
 import type { HanziWriterInstance } from 'hanzi-writer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Eraser, Sparkles } from 'lucide-react';
-import type { VocabularyItem } from '../../types/vocabulary';
 import { useWorkingSet } from '../../hooks/useLearningDeck';
 import { speakChinese } from '../../lib/speech';
 
-function firstChar(hanzi: string): string {
-  const it = hanzi[Symbol.iterator]().next();
-  return it.done ? hanzi : it.value;
+function firstChar(hanTu: string): string {
+  const it = hanTu[Symbol.iterator]().next();
+  return it.done ? hanTu : it.value;
 }
 
 export function StrokePractice() {
   const words = useWorkingSet();
   const singleCharWords = useMemo(
-    () => words.filter((w) => [...w.hanzi].length === 1),
+    () => words.filter((w) => [...w.hanTu].length === 1),
     [words]
   );
   const pool = singleCharWords.length ? singleCharWords : words;
   const [idx, setIdx] = useState(0);
   const word = pool[idx % pool.length];
-  const char = word ? firstChar(word.hanzi) : '学';
+  const char = word ? firstChar(word.hanTu) : '学';
 
   const mountRef = useRef<HTMLDivElement>(null);
   const writerRef = useRef<HanziWriterInstance | null>(null);
